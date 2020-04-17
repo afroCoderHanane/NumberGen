@@ -26,7 +26,7 @@ void putnumArray(int* array, int size)
 {
     cout << "Enter size of the array" << endl;
     cin >> size;
-    array[size];
+    //array[size];
     ifstream put;
     put.open("text.txt", ios::in);
     int i = 0;
@@ -43,36 +43,45 @@ int main()
     createFile();
     int size = 0;
     int j;
-    //cout<<" Enter the size of the arrays"
-    int a_sorted[1000];
-    int d_sorted[1000];
-    int c_unsorted[1000];
+    ofstream push;
+    
+    cout<<" Enter the size of the arrays"<<endl;
+    cin>>size;
+    int* a_sorted= new int;
+    int* d_sorted= new int;
+    int* c_unsorted = new int;
     putnumArray(a_sorted, size);
-    sort(a_sorted, a_sorted + 900);
+    sort(a_sorted, a_sorted + 90);
     cout << "almost sorted" << endl;
-    for (int i = 0; i < 1000; i++)
-    {
+    push.open("a_text.txt", ios::out);
+    for (int i = 0; i < size; i++)
+    {   
         cout << a_sorted[i] << " " ;
+        push<< a_sorted[i] << " " ;
     }
     cout << endl;
+    push.close();
     putnumArray(d_sorted, size);
     int n = sizeof(d_sorted) / sizeof(d_sorted[0]);
 
     sort(d_sorted, d_sorted + n, greater<int>());
     cout << "descending order sorted" << endl;
-    for (int i = 0; i < 1000; i++)
-    {
+    push.open("d_text.txt", ios::out);
+    for (int i = 0; i < size; i++)
+    {   
         cout << d_sorted[i] << " " ;
+        push<<d_sorted[i] << " ";
     }
     cout << endl;
-
-    putnumArray(c_unsorted, size);
+    push.close();
+    putnumArray (c_unsorted, size);
     cout << "completely unsorted" << endl;
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < size; i++)
     {
         cout << c_unsorted[i] << " " ;
     }
     cout << endl;
+    push.close();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
