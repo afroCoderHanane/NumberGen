@@ -4,8 +4,13 @@
 #include <iostream>
 #include<fstream>
 #include <stdlib.h> 
+#include <time.h>
 #include <algorithm>
 
+void selectionSort(int *array);
+void swapnum(int&, int&);
+
+//#include"sorting.h"
 using namespace std;
 void createFile(){
     ofstream push;
@@ -38,6 +43,8 @@ void putnumArray(int* array, int size)
     put.close();
     
 }
+//selection sort
+
 int main()
 {
     createFile();
@@ -51,7 +58,8 @@ int main()
     int* d_sorted= new int;
     int* c_unsorted = new int;
     putnumArray(a_sorted, size);
-    sort(a_sorted, a_sorted + 90);
+    sort(a_sorted, a_sorted + size*90/100);
+
     cout << "almost sorted" << endl;
     push.open("a_text.txt", ios::out);
     for (int i = 0; i < size; i++)
@@ -61,10 +69,17 @@ int main()
     }
     cout << endl;
     push.close();
+    selectionSort(a_sorted);
+    cout<<endl<<"after Sorting"<<endl;
+    for (int i = 0; i < size; i++)
+    {   
+        cout << a_sorted[i] << " " ;
+        
+    }
+    cout<< endl;
     putnumArray(d_sorted, size);
-    int n = sizeof(d_sorted) / sizeof(d_sorted[0]);
-
-    sort(d_sorted, d_sorted + n, greater<int>());
+   
+    sort(d_sorted, d_sorted + size, greater<int>());
     cout << "descending order sorted" << endl;
     push.open("d_text.txt", ios::out);
     for (int i = 0; i < size; i++)
@@ -74,6 +89,14 @@ int main()
     }
     cout << endl;
     push.close();
+    selectionSort(d_sorted);
+    cout<<endl<<"after Sorting"<<endl;
+    for (int i = 0; i < size; i++)
+    {   
+        cout << d_sorted[i] << " " ;
+        
+    }
+    cout<< endl;
     putnumArray (c_unsorted, size);
     cout << "completely unsorted" << endl;
     for (int i = 0; i < size; i++)
@@ -82,6 +105,46 @@ int main()
     }
     cout << endl;
     push.close();
+    selectionSort(c_unsorted);
+    cout<<endl<<"after Sorting"<<endl;
+    for (int i = 0; i < size; i++)
+    {   
+        cout << c_unsorted[i] << " " ;
+        
+    }
+}
+
+void swapnum(int &xp, int &yp)  
+{  
+    int temp = xp;  
+    xp = yp;  
+    yp = temp;  
+}
+void selectionSort(int *array)
+{
+  int size; 
+  cout<<"Enter size "<<endl;
+  cin >> size ;
+  int i ;
+  int j ;
+  int count=0;
+  int n=0;
+
+  for(i=0;i<size - 1;i++)
+  {
+    int index = i;
+    for( j=i+1; j<size;j++)
+       {
+          n++;
+         if(array[j]<array[index])
+           { 
+             index = j; 
+             swapnum(array[index],array[i]);
+             count++;
+           }
+       }
+  }
+  cout<<"count is "<<count<<" and comparison is "<<n <<endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
