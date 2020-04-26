@@ -6,11 +6,9 @@
 #include <stdlib.h> 
 #include <time.h>
 #include <algorithm>
+#include"Sorting.h"
 
-void selectionSort(int *array);
-void swapnum(int&, int&);
 
-//#include"sorting.h"
 using namespace std;
 void createFile(){
     ofstream push;
@@ -69,7 +67,7 @@ int main()
     }
     cout << endl;
     push.close();
-    selectionSort(a_sorted);
+    insertionSort(a_sorted);
     cout<<endl<<"after Sorting"<<endl;
     for (int i = 0; i < size; i++)
     {   
@@ -89,7 +87,7 @@ int main()
     }
     cout << endl;
     push.close();
-    selectionSort(d_sorted);
+    insertionSort(d_sorted);
     cout<<endl<<"after Sorting"<<endl;
     for (int i = 0; i < size; i++)
     {   
@@ -105,7 +103,7 @@ int main()
     }
     cout << endl;
     push.close();
-    selectionSort(c_unsorted);
+    insertionSort(c_unsorted);
     cout<<endl<<"after Sorting"<<endl;
     for (int i = 0; i < size; i++)
     {   
@@ -114,46 +112,5 @@ int main()
     }
 }
 
-void swapnum(int &xp, int &yp)  
-{  
-    int temp = xp;  
-    xp = yp;  
-    yp = temp;  
-}
-void selectionSort(int *array)
-{
-  int size; 
-  cout<<"Enter size "<<endl;
-  cin >> size ;
-  int i ;
-  int j ;
-  int count=0;
-  int n=0;
 
-  for(i=0;i<size - 1;i++)
-  {
-    int index = i;
-    for( j=i+1; j<size;j++)
-       {
-          n++;
-         if(array[j]<array[index])
-           { 
-             index = j; 
-             swapnum(array[index],array[i]);
-             count++;
-           }
-       }
-  }
-  cout<<"count is "<<count<<" and comparison is "<<n <<endl;
-}
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
