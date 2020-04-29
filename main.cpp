@@ -46,6 +46,14 @@ void putnumArray(int* array)
     
 }
 
+void printArray(int *array)
+{
+  for (int i = 0; i < numsize; i++)
+    {   
+        cout << array[i] << " " ;
+        
+    }
+}
 
 int main()
 {
@@ -54,33 +62,30 @@ int main()
     int j;
     ofstream push;
     
-    int* a_sorted= new int;
-    int* d_sorted= new int;
-    int* c_unsorted = new int;
+    int* a_sorted= new int[numsize];
+    int* d_sorted= new int[numsize];
+    int* c_unsorted = new int[numsize];
     putnumArray(a_sorted);
     sort(a_sorted, a_sorted + numsize*90/100);
-
+    
     cout << "almost sorted" << endl;
+    printArray(a_sorted);
     push.open("a_text.txt", ios::out);
     for (int i = 0; i < numsize; i++)
-    {   
-        cout << a_sorted[i] << " " ;
-        push<< a_sorted[i] << " " ;
-    }
+       push<< a_sorted[i] << " " ;
+  
+   
     cout << endl;
     push.close();
     //insertionSort(a_sorted, numsize);
     //selectionSort(a_sorted, numsize);
-      mergeSort(a_sorted,0,numsize-1);
+    //mergeSort(a_sorted,0,numsize-1);
     //quickSort(a_sorted,0,numsize-1);
-       print();
-       reset();
+    heapSort(a_sorted, numsize);
+       print(); //print the swap and the comparisons numbers 
+       reset(); // set the counter to 0
     cout<<endl<<"after Sorting"<<endl;
-    for (int i = 0; i < numsize; i++)
-    {   
-        cout << a_sorted[i] << " " ;
-        
-    }
+     printArray(a_sorted);
     cout<< endl;
     putnumArray(d_sorted);
    
@@ -94,12 +99,14 @@ int main()
     }
     cout << endl;
     push.close();
+
     //insertionSort(d_sorted, numsize);
     //selectionSort(d_sorted, numsize);
-    mergeSort(d_sorted,0,numsize-1);
+    //mergeSort(d_sorted,0,numsize-1);
     //quickSort(d_sorted,0,numsize-1);
-     print();
-     reset();
+    heapSort(d_sorted, numsize);
+      print(); //print the swap and the comparisons numbers
+      reset(); // set the counter to 0
     cout<<endl<<"after Sorting"<<endl;
     for (int i = 0; i < numsize; i++)
     {   
@@ -117,16 +124,23 @@ int main()
     push.close();
     //insertionSort(c_unsorted, numsize);
     //selectionSort(c_unsorted, numsize);
-    mergeSort(c_unsorted,0,numsize-1);
+    //mergeSort(c_unsorted,0,numsize-1);
     //quickSort(c_unsorted,0,numsize-1);
-    print();
-    reset();
+    heapSort(c_unsorted, numsize);
+      print();//print the swap and the comparisons numbers
+      reset();// set the counter to 0
     cout<<endl<<"after Sorting"<<endl;
     for (int i = 0; i < numsize; i++)
     {   
         cout << c_unsorted[i] << " " ;
         
     }
+
+
+//delete the memory allocation
+delete [] a_sorted;
+delete [] d_sorted;
+delete [] c_unsorted;
 }
 
 

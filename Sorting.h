@@ -16,3 +16,6 @@ void mergeSort (int a[], int first, int last);
 
 void quickSort ( int a[], int first, int last);
 void partition ( int a[], int first, int last, int &p);
+
+void heapSort ( int a[], int length );
+void heapDown ( int list[], int root, int last);

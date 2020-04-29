@@ -138,3 +138,60 @@ void print()
 {
   cout<<"swaps= "<<swap_index<<" and  comparisons= "<<count_index<<endl;
 }
+
+void heapSort ( int a[], int length )
+{
+      int index;
+       
+      // create the heap 
+      for ( index = length/2 - 1; index >=0; index-- )
+          {
+            
+           heapDown ( a, index, length-1);
+           count_index++;
+          }
+      
+      // sort the heap
+      for ( index = length - 1; index >= 1; index-- )
+        {
+             swap (a[0], a[index]);
+             swap_index++;
+             heapDown (a, 0, index -1);
+         }
+   }
+
+
+void heapDown ( int list[], int root, int last) 
+{
+     int large; 
+     int temp = list[root];                    
+     large = 2 * root + 1; 
+     
+     while ( large <= last )
+    {        
+          count_index++;
+          if ( large < last )                                            {    
+                 count_index++;
+             if ( list[large] < list[large + 1] ) 
+                 { 
+                   large = large + 1;
+                   count_index++;
+                 }                               
+            }   
+         if ( temp > list[large] )                                                  
+                   {
+                     count_index++;
+                      break;      
+                   }                                                                
+         else {                                                                             
+                    list[root] = list[large];                                    
+                    root = large;                                       
+                    large = 2 * root + 1;  
+
+                    swap_index++;
+
+                 }   
+      }
+       list[root] = temp;       
+                                           
+  }                        
